@@ -42,3 +42,16 @@ Atualizar Usuario
 
     RETURN    ${response}
 
+Excluir Usuario
+    [Arguments]    ${user_id}
+
+    ${headers}=    Create Dictionary
+    ...    Authorization=${TOKEN}
+
+    ${response}=    DELETE On Session
+    ...    serverest
+    ...    /users/${user_id}
+    ...    headers=${headers}
+
+    RETURN    ${response}
+

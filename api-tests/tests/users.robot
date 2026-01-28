@@ -37,3 +37,13 @@ Validar usuario atualizado
 
     Should Be Equal As Integers    ${response.status_code}    200
     Should Be Equal    ${response.json()['nome']}    Usuario QA Atualizado
+
+Excluir usuario com sucesso
+    ${response}=    Excluir Usuario    ${USER_ID}
+
+    Should Be Equal As Integers    ${response.status_code}    200
+
+Validar usuario excluido
+    ${response}=    Buscar Usuario Por Id    ${USER_ID}
+
+    Should Be Equal As Integers    ${response.status_code}    400
