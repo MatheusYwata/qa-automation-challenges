@@ -8,7 +8,7 @@ Suite Setup       Abrir App
 Suite Teardown    Fechar App
 
 Test Setup        Resetar App
-Test Teardown     Run Keyword If Test Failed    Capture Page Screenshot
+Test Teardown     Capture Page Screenshot
 
 *** Test Cases ***
 
