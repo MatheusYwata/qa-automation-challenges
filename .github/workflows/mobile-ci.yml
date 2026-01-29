@@ -1,0 +1,35 @@
+name: Mobile Tests CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  mobile-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependências Python
+        run: |
+          pip install -r requirements.txt
+
+      - name: Verificar estrutura mobile
+        run: |
+          echo "Mobile tests structure OK"
+          ls mobile-tests
+
+      - name: Upload estrutura como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-framework
+          path: mobile-tests
