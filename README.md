@@ -11,7 +11,7 @@ O projeto contempla:
 ---
 
 # Estrutura do Projeto
-
+```bash
 qa-automation-challenges/
 │
 ├── api-tests/
@@ -32,6 +32,7 @@ qa-automation-challenges/
 │
 ├── requirements.txt
 └── README.md
+```
 
 - ***Cada módulo possui README próprio com instruções específicas.***
 
