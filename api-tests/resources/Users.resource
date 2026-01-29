@@ -5,9 +5,6 @@ Resource    Base.resource
 Criar Usuario
     [Arguments]    ${nome}    ${email}    ${password}    ${admin}
 
-    ${headers}=    Create Dictionary
-    ...    Authorization=${TOKEN}
-
     ${body}=    Create Dictionary
     ...    nome=${nome}
     ...    email=${email}
@@ -16,11 +13,12 @@ Criar Usuario
 
     ${response}=    POST On Session
     ...    serverest
-    ...    /users
+    ...    /usuarios
     ...    json=${body}
-    ...    headers=${headers}
+    ...    expected_status=anything
 
     RETURN    ${response}
+
 
 Atualizar Usuario
     [Arguments]    ${user_id}    ${nome}    ${email}    ${password}    ${admin}
@@ -36,9 +34,10 @@ Atualizar Usuario
 
     ${response}=    PUT On Session
     ...    serverest
-    ...    /users/${user_id}
+    ...    /usuarios/${user_id}
     ...    json=${body}
     ...    headers=${headers}
+    ...    expected_status=anything
 
     RETURN    ${response}
 
@@ -50,8 +49,21 @@ Excluir Usuario
 
     ${response}=    DELETE On Session
     ...    serverest
-    ...    /users/${user_id}
+    ...    /usuarios/${user_id}
     ...    headers=${headers}
 
     RETURN    ${response}
 
+Buscar Usuario Por Id
+    [Arguments]    ${user_id}    ${expected_status}=200
+
+    ${headers}=    Create Dictionary
+    ...    Authorization=${TOKEN}
+
+    ${response}=    GET On Session
+    ...    serverest
+    ...    /usuarios/${user_id}
+    ...    headers=${headers}
+    ...    expected_status=${expected_status}
+
+    RETURN    ${response}
